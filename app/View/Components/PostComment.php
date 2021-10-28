@@ -1,0 +1,33 @@
+<?php
+
+namespace App\View\Components;
+
+use Illuminate\View\Component;
+
+class PostComment extends Component
+{
+    /**
+     * Create a new component instance.
+     *
+     * @return void
+     */
+    public $comments, $post;
+
+    public function __construct($comments, $post)
+    {
+        $this->comments = $comments;
+        $this->post = $post;
+
+        return [$comments, $post];
+    }
+
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\Contracts\View\View|\Closure|string
+     */
+    public function render()
+    {
+        return view('components.post-comment');
+    }
+}
