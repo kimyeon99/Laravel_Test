@@ -24,6 +24,8 @@ Route::get('/', function () {
 
 Route::resource('/posts', Postscontroller::class);
 Route::delete('/posts/image/{post}', [Postscontroller::class, "imageDel"])->name('posts.imageDel');
+Route::get('/posts/company', [Postscontroller::class, "list"])->name('posts.list');
+
 
 Route::get('/posts/comments/{com_id}/edit', [CommentsController::class, "edit"])->name('comments.edit');
 Route::post('/posts/{post_id}/comments', [CommentsController::class, "store"])->name('comments.store');

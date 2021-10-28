@@ -85,7 +85,11 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
         $comments = Comment::where('post_id', $id)->latest()->paginate(10);
-        $liked = DB::table('post_user')->where('post_id', $id)->where('user_id', Auth::user()->id)->exists();
+        if (Auth::check()) {
+            $liked = DB::table('post_user')->where('post_id', $id)->where('user_id', Auth::user()->id)->exists();
+        } else {
+            $liked = false;
+        }
         return view('bbs.show', ['post' => $post, 'comments' => $comments, 'liked' => $liked]);
     }
 
